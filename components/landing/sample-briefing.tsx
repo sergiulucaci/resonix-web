@@ -7,6 +7,71 @@ import { proxyAudioUrl } from "@/lib/audio";
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3001";
 
+const FALLBACK_ITEM: NewsItem = {
+  id: "cmmdx6n5z0000s81vzj0wk2m2",
+  topic: "tech",
+  title: "Tech",
+  summary:
+    "The Pentagon flags Anthropic as a supply-chain risk, Trump pushes data center companies on power generation pledges, and a GPL licensing mechanism gets fresh scrutiny.",
+  detailedSummary: "",
+  sourceUrl: "resonix://brief/tech/1772742619077",
+  sourceName: "Resonix Brief",
+  publishedAt: "2026-03-05T18:55:13.000Z",
+  audioUrl: "https://api.resonix.audio/audio/tech-1772742594405.mp3",
+  createdAt: "2026-03-05T20:30:19.079Z",
+  updatedAt: "2026-03-05T20:30:19.079Z",
+  keyPoints: [
+    "The Pentagon has formally designated Anthropic as a supply-chain risk, raising serious questions about how deeply AI companies are embedded in defense infrastructure and whether alternatives will be fast-tracked.",
+    "The White House secured pledges from data center operators to fund their own power generation, but without enforcement mechanisms or clear economics, the commitments may amount to little more than theater.",
+    "A deep look at GPL section fourteen proxy delegation highlights how open-source license upgrade mechanisms could reshape software governance as AI-generated code muddies authorship and licensing chains.",
+  ],
+  bottomLine:
+    "Washington is tightening its grip on AI supply chains while struggling to solve the energy demands those same AI systems create.",
+  audioScript:
+    "The Pentagon has formally labeled Anthropic a supply-chain risk. That's a significant escalation. It signals the Department of Defense views its dependency on certain AI providers — even American ones — as a strategic vulnerability. The designation could trigger procurement restrictions, push agencies toward alternative vendors, and reshape how defense contracts flow through the AI industry. For Anthropic, a company that has positioned itself as the safety-conscious choice in frontier AI, being flagged by the very institution that values reliability above all else is a credibility problem. Watch for whether this triggers a broader review of AI vendors across the federal government. Meanwhile, the White House announced that major data center companies have pledged to pay for their own power generation. On the surface, it looks like progress on the growing energy crisis driven by AI compute. But dig in, and there's less here than meets the eye. There's no enforcement mechanism. The economics are questionable at best. Building dedicated power infrastructure takes years and billions of dollars, and these pledges are voluntary. Without teeth, this may function more as political cover than energy policy. The fundamental tension remains: AI demand for electricity is surging, and the grid isn't keeping up. On a quieter but technically important front, GPL section fourteen proxy delegation is getting renewed attention in open-source legal circles. This mechanism allows projects to delegate the decision of upgrading to a newer version of the General Public License to a trusted proxy. It sounds procedural, but it matters. As AI-generated code proliferates and authorship becomes harder to trace, the question of who controls license upgrades becomes genuinely consequential for software governance. The thread connecting these stories is control. Who controls the AI supply chain for national security. Who controls the energy those systems consume. Who controls the legal frameworks governing the code underneath it all. The answers are still forming, and this week made clear — Washington intends to have a louder voice in each of them.",
+  sources: [
+    {
+      sourceTitle: "Hacker News",
+      articleTitle: "Pentagon Formally Labels Anthropic Supply-Chain Risk",
+      sourceUrl:
+        "https://www.wsj.com/politics/national-security/pentagon-formally-labels-anthropic-supply-chain-risk-escalating-conflict-ebdf0523",
+      publishedAt: "2026-03-05T19:24:35.000Z",
+      preview: "Pentagon Formally Labels Anthropic Supply-Chain Risk",
+      logoUrl: "https://www.google.com/s2/favicons?domain=www.wsj.com&sz=64",
+    },
+    {
+      sourceTitle: "Ars Technica",
+      articleTitle:
+        "Trump gets data center companies to pledge to pay for power generation",
+      sourceUrl:
+        "https://arstechnica.com/tech-policy/2026/03/leading-ai-datacenter-companies-sign-pledge-to-buy-their-own-power/",
+      publishedAt: "2026-03-05T18:41:28.000Z",
+      preview:
+        "With no enforcement and questionable economics, it may not make a difference.",
+      logoUrl:
+        "https://www.google.com/s2/favicons?domain=arstechnica.com&sz=64",
+    },
+    {
+      sourceTitle: "Lobsters",
+      articleTitle: "GPL upgrades via section 14 proxy delegation",
+      sourceUrl: "https://runxiyu.org/comp/gplproxy/",
+      publishedAt: "2026-03-05T13:25:12.000Z",
+      preview: "GPL upgrades via section 14 proxy delegation",
+      logoUrl: "https://www.google.com/s2/favicons?domain=runxiyu.org&sz=64",
+    },
+  ],
+};
+
+function isComplete(item: NewsItem): boolean {
+  return !!(
+    item.summary &&
+    item.keyPoints &&
+    item.keyPoints.length > 0 &&
+    item.audioScript &&
+    item.audioUrl
+  );
+}
+
 export function SampleBriefing() {
   const [item, setItem] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
@@ -18,11 +83,12 @@ export function SampleBriefing() {
       try {
         const res = await fetch(`${API_BASE}/news/tech?limit=1`);
         const data = await res.json();
-        if (!cancelled && data.items?.[0]) {
-          setItem(data.items[0]);
+        if (!cancelled) {
+          const fetched: NewsItem | undefined = data.items?.[0];
+          setItem(fetched && isComplete(fetched) ? fetched : FALLBACK_ITEM);
         }
       } catch {
-        // silently fail — section just won't render
+        if (!cancelled) setItem(FALLBACK_ITEM);
       } finally {
         if (!cancelled) setLoading(false);
       }
