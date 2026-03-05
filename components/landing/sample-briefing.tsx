@@ -73,6 +73,7 @@ function isComplete(item: NewsItem): boolean {
 }
 
 export function SampleBriefing() {
+  console.log('test');
   const [item, setItem] = useState<NewsItem | null>(null);
   const [loading, setLoading] = useState(true);
 
