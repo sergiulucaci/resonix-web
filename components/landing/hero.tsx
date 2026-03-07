@@ -11,7 +11,7 @@ export function Hero() {
           for people in tech
         </h1>
         <p className="landing-subline">
-          Too many great newsletters, too little time. Resonix curates 40+
+          Too many great newsletters, too little time. Resonix curates
           trusted sources and turns them into short audio briefings — so you
           stay sharp without the reading backlog.
         </p>

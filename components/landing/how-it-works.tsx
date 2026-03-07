@@ -3,7 +3,7 @@ const STEPS = [
     num: "01",
     title: "Curate",
     description:
-      "We pull from 40+ sources — newsletters, feeds, and publications trusted by engineers and founders.",
+      "We pull from trusted sources — newsletters, feeds, and publications trusted by engineers and founders.",
   },
   {
     num: "02",
