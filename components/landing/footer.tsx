@@ -6,7 +6,7 @@ export function Footer() {
       <div className="landing-container">
         <h2 className="landing-section-title">Stay in the loop</h2>
         <p className="landing-section-sub">
-          We&apos;re launching soon. Join the waitlist to get early access.
+          Join the waitlist to get notified when we launch and receive updates along the way.
         </p>
         <WaitlistForm />
         <div className="footer-links">
