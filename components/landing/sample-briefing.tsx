@@ -7,6 +7,8 @@ import { proxyAudioUrl } from "@/lib/audio";
 const API_BASE =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:3001";
 
+const TOPICS = ["tech", "ai", "cloud-infra", "security", "markets", "health", "policy"];
+
 const FALLBACK_ITEM: NewsItem = {
   id: "cmmdx6n5z0000s81vzj0wk2m2",
   topic: "tech",
@@ -81,7 +83,8 @@ export function SampleBriefing() {
 
     async function load() {
       try {
-        const res = await fetch(`${API_BASE}/news/tech?limit=1`);
+        const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
+        const res = await fetch(`${API_BASE}/news/${topic}?limit=1`);
         const data = await res.json();
         if (!cancelled) {
           const fetched: NewsItem | undefined = data.items?.[0];
