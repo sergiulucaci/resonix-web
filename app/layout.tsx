@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Resonix - Audio briefings for people in tech",
   description:
-    "Resonix curates trusted sources and turns them into short audio briefings.",
+    "Resonix takes tech content and turns it into short audio briefings",
 };
 
 export default function RootLayout({
