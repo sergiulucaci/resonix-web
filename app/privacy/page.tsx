@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Resonix",
+  title: "Privacy Policy - Resonix",
 };
 
 export default function PrivacyPolicy() {
@@ -19,8 +19,8 @@ export default function PrivacyPolicy() {
       <h2 style={{ fontSize: 20, fontWeight: 600, marginTop: 32, marginBottom: 8 }}>Information We Collect</h2>
       <p>We collect minimal information to provide and improve our service:</p>
       <ul style={{ paddingLeft: 24 }}>
-        <li><strong>Feedback messages</strong> — When you voluntarily submit feedback through the app, we store the message content, your device platform (iOS/Android), and your IP address for rate limiting purposes.</li>
-        <li><strong>Topic preferences</strong> — Your selected topic is stored locally on your device and is not transmitted to our servers.</li>
+        <li><strong>Feedback messages</strong> - When you voluntarily submit feedback through the app, we store the message content, your device platform (iOS/Android), and your IP address for rate limiting purposes.</li>
+        <li><strong>Topic preferences</strong> - Your selected topic is stored locally on your device and is not transmitted to our servers.</li>
       </ul>
 
       <h2 style={{ fontSize: 20, fontWeight: 600, marginTop: 32, marginBottom: 8 }}>How We Use Your Information</h2>

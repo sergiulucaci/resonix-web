@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Support — Resonix",
+  title: "Support - Resonix",
 };
 
 export default function Support() {

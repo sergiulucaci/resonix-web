@@ -61,7 +61,7 @@ export function WaitlistForm() {
           className="waitlist-input"
           disabled={status === "pending"}
         />
-        {/* Honeypot — hidden from real users */}
+        {/* Honeypot - hidden from real users */}
         <input
           type="text"
           name="company"

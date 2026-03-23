@@ -7,7 +7,7 @@ const WAITLIST_PATH = join(process.cwd(), "waitlist.json");
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 5;
 
-// In-memory rate limiter (resets on restart — fine for waitlist)
+// In-memory rate limiter (resets on restart - fine for waitlist)
 const hits = new Map<string, number[]>();
 
 function isRateLimited(ip: string): boolean {
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Honeypot — bots fill this hidden field. Reject silently.
+  // Honeypot - bots fill this hidden field. Reject silently.
   if (body.company) {
     return NextResponse.json({
       message: "Signal received. We'll ping you when it's live.",

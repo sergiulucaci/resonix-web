@@ -9,7 +9,7 @@ export function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // No password set — allow through (dev convenience)
+  // No password set - allow through (dev convenience)
   if (!APP_PASSWORD) {
     return NextResponse.next();
   }

@@ -796,7 +796,7 @@ p.briefing-bottom-line {
   color: var(--landing-text-secondary);
 }
 
-/* Sources in briefing — inline chips */
+/* Sources in briefing - inline chips */
 .briefing-source-inline {
   display: flex;
   flex-wrap: wrap;
